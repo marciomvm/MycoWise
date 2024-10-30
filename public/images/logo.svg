@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mushroom cap -->
+  <path d="M60 20C35.1472 20 15 35.1472 15 54C15 72.8528 35.1472 88 60 88C84.8528 88 105 72.8528 105 54C105 35.1472 84.8528 20 60 20Z" fill="#2E4D34"/>
+  <!-- Mushroom stem -->
+  <rect x="50" y="88" width="20" height="25" fill="#D9CBA1"/>
+  <!-- Decorative spores -->
+  <circle cx="45" cy="45" r="3" fill="#D9CBA1"/>
+  <circle cx="75" cy="45" r="3" fill="#D9CBA1"/>
+  <circle cx="60" cy="40" r="3" fill="#D9CBA1"/>
+</svg>

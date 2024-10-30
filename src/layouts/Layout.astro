@@ -1,0 +1,159 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Discover premium Lion's Mane mushroom grow kits and expert cultivation guides." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* New Color Palette */
+    --primary: #2E4D34;
+    --accent: #D9CBA1;
+    --secondary: #B2B2B2;
+    --highlight: #FF7F50;
+    
+    /* Variations */
+    --primary-light: #3E6445;
+    --primary-dark: #1E3322;
+    --accent-light: #E5DAB8;
+    --accent-dark: #C4B17E;
+    
+    /* Text Colors */
+    --text-primary: #2E4D34;
+    --text-secondary: #666666;
+    --text-light: #FFFFFF;
+    
+    /* Background Colors */
+    --background: #FFFFFF;
+    --background-alt: #F5F3EA;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--background);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Button Styles */
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .button.primary {
+    background: var(--primary);
+    color: var(--text-light);
+  }
+
+  .button.primary:hover {
+    background: var(--primary-light);
+  }
+
+  .button.secondary {
+    background: var(--accent);
+    color: var(--primary);
+  }
+
+  .button.secondary:hover {
+    background: var(--accent-dark);
+  }
+
+  .button.highlight {
+    background: var(--highlight);
+    color: var(--text-light);
+  }
+
+  .button.highlight:hover {
+    opacity: 0.9;
+  }
+
+  /* Card Styles */
+  .card {
+    background: var(--background);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Section Styles */
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-alt {
+    background: var(--background-alt);
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+</style>

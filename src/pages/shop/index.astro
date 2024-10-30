@@ -1,0 +1,333 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const products = [
+  {
+    id: 'lions-mane-kit',
+    title: "Lion's Mane Mushroom Growing Kit",
+    price: 29.99,
+    description: "Cultivate delightful gourmet mushrooms with ease! Our simple and convenient 5lb kit empowers you to grow Lion's Mane mushrooms effortlessly.",
+    image: "/images/products/lions-mane-kit.jpg",
+    benefits: [
+      "Easy cultivation for beginners",
+      "Up to 1kg harvest per kit",
+      "Indoor & outdoor growing",
+      "Brain health support",
+      "Complete instructions included"
+    ],
+    buyUrl: "https://growkitmushroom.co.uk/product/lions-mane-mushroom-growing-kit/",
+    reviews: [
+      {
+        author: "Sarah M.",
+        rating: 5,
+        text: "Amazing kit! I got my first harvest within weeks. The instructions were clear and the support team was very helpful when I had questions.",
+        date: "2024-01-15"
+      },
+      {
+        author: "James K.",
+        rating: 5,
+        text: "Perfect for beginners. I've never grown mushrooms before but this kit made it so easy. The Lion's Mane looks exactly like the pictures!",
+        date: "2024-01-10"
+      },
+      {
+        author: "Emma R.",
+        rating: 4,
+        text: "Great product and excellent customer service. Would have given 5 stars but took a bit longer than expected to fruit. Still very happy with the results!",
+        date: "2024-01-05"
+      },
+      {
+        author: "Michael P.",
+        rating: 5,
+        text: "Second time ordering this kit. Consistently good results and the mushrooms taste amazing. Will definitely buy again!",
+        date: "2024-01-01"
+      }
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Lion's Mane Mushroom Growing Kits | Premium Cultivation Products"
+  description="Discover our premium Lion's Mane mushroom growing kits. Perfect for beginners and experienced growers. Start your cultivation journey today!">
+  
+  <main class="shop-page">
+    <section class="hero">
+      <div class="container">
+        <h1>Premium Mushroom Growing Kits</h1>
+        <p>Start your cultivation journey with our expertly crafted growing kits</p>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        {products.map(product => (
+          <div class="product-showcase">
+            <div class="product-image">
+              <img src={product.image} alt={product.title} />
+            </div>
+            <div class="product-info">
+              <h2>{product.title}</h2>
+              <p class="price">£{product.price}</p>
+              <div class="description">
+                <p>{product.description}</p>
+                <h3>Key Benefits:</h3>
+                <ul>
+                  {product.benefits.map(benefit => (
+                    <li>{benefit}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="actions">
+                <a href={product.buyUrl} class="buy-button">Buy Now</a>
+                <a href="/grow-guide" class="guide-button">View Growing Guide</a>
+              </div>
+
+              <div class="reviews">
+                <h3>Customer Reviews</h3>
+                <div class="reviews-grid">
+                  {product.reviews.map(review => (
+                    <div class="review-card">
+                      <div class="review-header">
+                        <div class="stars">
+                          {Array.from({ length: review.rating }).map(() => (
+                            <i class="fas fa-star"></i>
+                          ))}
+                        </div>
+                        <span class="review-date">{new Date(review.date).toLocaleDateString()}</span>
+                      </div>
+                      <p class="review-text">{review.text}</p>
+                      <p class="review-author">- {review.author}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2>Why Choose Our Growing Kits?</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <i class="fas fa-seedling"></i>
+            <h3>Easy to Grow</h3>
+            <p>Perfect for beginners with simple, clear instructions</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-box-open"></i>
+            <h3>Complete Kit</h3>
+            <p>Everything you need to start growing immediately</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-heart"></i>
+            <h3>Health Benefits</h3>
+            <p>Support brain health and overall wellness</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-hands-helping"></i>
+            <h3>Expert Support</h3>
+            <p>Dedicated customer service for growing guidance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .shop-page {
+    padding-top: 80px;
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/shop-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .products {
+    padding: 4rem 0;
+  }
+
+  .product-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-info {
+    padding: 2rem;
+  }
+
+  .price {
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .description {
+    margin: 2rem 0;
+  }
+
+  .description ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .description li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .description li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .buy-button, .guide-button {
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .buy-button {
+    background: var(--accent);
+    color: white;
+  }
+
+  .guide-button {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .buy-button:hover, .guide-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .reviews {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--accent-light);
+  }
+
+  .reviews h3 {
+    margin-bottom: 1.5rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: var(--background-alt);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .stars {
+    color: var(--highlight);
+  }
+
+  .review-date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .review-text {
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .review-author {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .features {
+    background: var(--background-alt);
+    padding: 4rem 0;
+  }
+
+  .features h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .feature i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .product-showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

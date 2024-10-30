@@ -1,0 +1,127 @@
+---
+const articles = [
+  {
+    title: "The Complete Guide to Lion's Mane Benefits",
+    excerpt: "Discover the amazing health benefits of Lion's Mane mushroom, from cognitive enhancement to immune system support.",
+    image: "/images/articles/lions-mane-benefits.jpg",
+    slug: "benefits-of-lions-mane",
+    date: "2024-01-15"
+  },
+  {
+    title: "How to Grow Lion's Mane at Home",
+    excerpt: "A step-by-step guide to growing Lion's Mane mushrooms in your own home using our premium grow kits.",
+    image: "/images/articles/growing-guide.jpg",
+    slug: "growing-lions-mane",
+    date: "2024-01-10"
+  },
+  {
+    title: "5 Delicious Lion's Mane Recipes",
+    excerpt: "Explore these mouth-watering recipes that make the most of your home-grown Lion's Mane mushrooms.",
+    image: "/images/articles/recipes.jpg",
+    slug: "lions-mane-recipes",
+    date: "2024-01-05"
+  }
+];
+---
+
+<section class="latest-articles">
+  <div class="container">
+    <h2>Latest Articles</h2>
+    <div class="articles-grid">
+      {articles.map(article => (
+        <article class="article-card">
+          <img src={article.image} alt={article.title} />
+          <div class="content">
+            <time datetime={article.date}>{new Date(article.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+            <h3>{article.title}</h3>
+            <p>{article.excerpt}</p>
+            <a href={`/blog/${article.slug}`} class="read-more">Read More →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .latest-articles {
+    padding: 4rem 2rem;
+    background: white;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .article-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .article-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .content {
+    padding: 1.5rem;
+  }
+
+  time {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  h3 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .read-more {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
+
+  .read-more:hover {
+    color: var(--accent-dark);
+  }
+
+  @media (max-width: 768px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

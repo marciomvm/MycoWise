@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const recipes = await getCollection('recipes');
+---
+
+<Layout 
+  title="Lion's Mane Mushroom Recipes | Delicious & Nutritious"
+  description="Discover delicious recipes featuring Lion's Mane mushrooms. From gourmet dishes to simple preparations, find the perfect way to enjoy your harvest.">
+  
+  <main class="recipes-page">
+    <section class="hero">
+      <div class="container">
+        <h1>Lion's Mane Recipes</h1>
+        <p>Delicious ways to enjoy your mushroom harvest</p>
+      </div>
+    </section>
+
+    <section class="recipes">
+      <div class="container">
+        <div class="recipes-grid">
+          {recipes.map((recipe) => (
+            <article class="recipe-card">
+              <a href={`/recipes/${recipe.slug}`}>
+                <img src={recipe.data.image || '/images/default-recipe.jpg'} alt={recipe.data.title} />
+                <div class="content">
+                  <h2>{recipe.data.title}</h2>
+                  <div class="recipe-meta">
+                    <span><i class="fas fa-clock"></i> {recipe.data.prepTime}</span>
+                    <span><i class="fas fa-utensils"></i> {recipe.data.servings} servings</span>
+                  </div>
+                  <p>{recipe.data.description}</p>
+                  <span class="view-recipe">View Recipe →</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .recipes-page {
+    padding-top: 80px;
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/recipes-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .recipes {
+    padding: 4rem 0;
+  }
+
+  .recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .recipe-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .recipe-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .recipe-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .content {
+    padding: 1.5rem;
+  }
+
+  .recipe-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0.5rem 0;
+  }
+
+  .recipe-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+
+  .view-recipe {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .recipes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
